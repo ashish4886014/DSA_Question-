@@ -106,11 +106,11 @@ class MYQueue{
             return ;
         }
         else if( idex < 0 or idex >= length){
-            cout<<"invalied index ";
+            cout<<"invalid index ";
             return ;
         }
         Node* temp  = head ;
-        for(int i= 0  ; i <= idex ; i++){
+        for(int i= 0  ; i < idex ; i++){
             temp = temp->next ;
         }
         cout<<temp->val<<endl;
@@ -122,33 +122,44 @@ class MYQueue{
             return ;
         }
         else if(idex < 0 or idex >= length){
-            cout<<"invalied index";
+            cout<<"invalid index";
             return ;
         }
         Node* temp = head ;
-        for(int i =0 ; i< idex ; i++ ){
+        for(int i =0 ; i< idex-1 ; i++ ){
             temp= temp->next;
         }
         Node* del = temp->next ;
-        temp->next = temp->next->next;
+        temp->next = del->next;
+        if( del == tail){
+            tail = temp;
+        }
         delete del;
         length--;
     }
     void PushAtIndex (int idex , int val){
-         Node* n = new Node(val);
-        if(idex <  0 or idex >=length){
+        if(idex <  0 or idex >length){
             cout<<"invalied index";
             return ;
         }      
         else if (idex == 0){
+         Node* n = new Node(val);
             n->next = head ;
             head  = n;
+            if(length == 0){
+                tail = n;
+            }
+        }
+        else if(idex == length){
+            Push(val);
+            return;
         }
         else{
             Node* temp = head ;
-            for(int i= 0  ; i < idex ; i++){
+            for(int i= 0  ; i < idex-1 ; i++){
                 temp = temp->next;
             }
+             Node* n = new Node(val);
             n->next = temp->next ;
             temp->next = n ;           
         }
