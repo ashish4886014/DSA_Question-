@@ -119,6 +119,9 @@ class MyDeque{
             return false;
         }
     }
+    void size(){
+        cout<<length<<endl;
+    }
     void display(){
         Node* temp = head ;
         while(temp != NULL){
@@ -143,6 +146,5 @@ int main(){
     q.display();
     q.clear();
    cout<< q.empty()<<endl;
-    
     return 0;
 }
